@@ -203,6 +203,15 @@ NOTE: This profile may only be applied when first initializing node at IPFS_PATH
 			return nil
 		},
 	},
+	"leveldb": {
+		Description: `Only use leveldb`,
+
+		InitOnly: true,
+		Transform: func(c *Config) error {
+			c.Datastore.Spec = leveldbSpec()
+			return nil
+		},
+	},
 	"lowpower": {
 		Description: `Reduces daemon overhead on the system. May affect node
 functionality - performance of content discovery and data
