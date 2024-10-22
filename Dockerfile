@@ -46,6 +46,9 @@ RUN set -eux; \
 # Now comes the actual target image, which aims to be as small as possible.
 FROM busybox:stable-glibc
 
+COPY --from=utilities /lib/*-linux-gnu*/libdl.so* /lib/
+COPY --from=utilities /lib/*-linux-gnu*/libc.so* /lib/
+
 # Get the ipfs binary, entrypoint script, and TLS CAs from the build container.
 ENV SRC_DIR /kubo
 COPY --from=utilities /usr/sbin/gosu /sbin/gosu

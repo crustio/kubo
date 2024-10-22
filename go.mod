@@ -111,6 +111,7 @@ require (
 	github.com/cockroachdb/tokenbucket v0.0.0-20230807174530-cc333fc44b06 // indirect
 	github.com/containerd/cgroups v1.1.0 // indirect
 	github.com/crackcomm/go-gitignore v0.0.0-20231225121904-e25f5bc08668 // indirect
+	github.com/crustio/go-ipfs-encryptor v0.0.0-20210926061803-542f621d062c // indirect
 	github.com/cskr/pubsub v1.0.2 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/davidlazar/go-crypto v0.0.0-20200604182044-b73af7476f6c // indirect
@@ -157,7 +158,7 @@ require (
 	github.com/ipfs/go-peertaskqueue v0.8.1 // indirect
 	github.com/ipfs/go-verifcid v0.0.3 // indirect
 	github.com/jackpal/go-nat-pmp v1.0.2 // indirect
-	github.com/klauspost/compress v1.17.9 // indirect
+	github.com/klauspost/compress v1.17.11 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.8 // indirect
 	github.com/koron/go-ssdp v0.0.4 // indirect
 	github.com/kr/pretty v0.3.1 // indirect
@@ -264,3 +265,9 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	lukechampine.com/blake3 v1.3.0 // indirect
 )
+
+replace github.com/ipfs/go-ds-badger => github.com/crustio/go-ds-badger v0.2.7-0.20241022133938-352e0b24813a
+
+replace github.com/ipfs/go-ds-flatfs => github.com/crustio/go-ds-flatfs v0.4.6-0.20241022134139-aaf034afdf2f
+
+replace github.com/ipfs/go-ds-leveldb => github.com/crustio/go-ds-leveldb v0.4.3-0.20241022134113-28b21e1cb3e6
