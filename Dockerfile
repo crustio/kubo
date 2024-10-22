@@ -44,7 +44,12 @@ RUN set -eux; \
 	rm -rf /var/lib/apt/lists/*
 
 # Now comes the actual target image, which aims to be as small as possible.
-FROM busybox:stable-glibc
+#FROM busybox:stable-glibc
+#FROM debian:stable-slim
+FROM ubuntu:latest
+
+#COPY --from=utilities /lib/*-linux-gnu*/libdl.so* /lib/
+#COPY --from=utilities /lib/*-linux-gnu*/libc.so* /lib/
 
 # Get the ipfs binary, entrypoint script, and TLS CAs from the build container.
 ENV SRC_DIR /kubo
@@ -75,9 +80,10 @@ EXPOSE 8081
 
 # Create the fs-repo directory and switch to a non-privileged user.
 ENV IPFS_PATH /data/ipfs
+
 RUN mkdir -p $IPFS_PATH \
-  && adduser -D -h $IPFS_PATH -u 1000 -G users ipfs \
-  && chown ipfs:users $IPFS_PATH
+    && useradd -r -u 2000 -U -d $IPFS_PATH ipfs \
+    && chown ipfs:ipfs $IPFS_PATH
 
 # Create mount points for `ipfs mount` command
 RUN mkdir /ipfs /ipns \
