@@ -5,6 +5,7 @@ import (
 	"errors"
 	_ "expvar"
 	"fmt"
+	"github.com/crustio/go-ipfs-encryptor/crust"
 	"math"
 	"net"
 	"net/http"
@@ -587,6 +588,18 @@ take effect.
 
 	// start MFS pinning thread
 	startPinMFS(cctx, daemonConfigPollInterval, &ipfsPinMFSNode{node})
+	// Set crust
+	cfg, err = repo.Config()
+	if err != nil {
+		return err
+	}
+
+	if cc, ok := cfg.Datastore.Spec["crust"]; ok {
+		if len(cc.(string)) != 0 {
+			crust.Worker.SetUrl(cc.(string))
+			fmt.Printf("Crust sworker url: %s\n", cc.(string))
+		}
+	}
 
 	// The daemon is *finally* ready.
 	fmt.Printf("Daemon is ready\n")
