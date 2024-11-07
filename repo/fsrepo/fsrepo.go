@@ -168,11 +168,9 @@ func open(repoPath string, userConfigFilePath string) (repo.Repo, error) {
 		return nil, err
 	}
 
-	// TODO: now skip version migration check
-	// if ver != 11 && RepoVersion > ver {
-	// 	return nil, ErrNeedMigration
-	// } else
-	if ver > RepoVersion {
+	if RepoVersion > ver {
+		return nil, ErrNeedMigration
+	} else if ver > RepoVersion {
 		// program version too low for existing repo
 		return nil, fmt.Errorf(programTooLowMessage, RepoVersion, ver)
 	}

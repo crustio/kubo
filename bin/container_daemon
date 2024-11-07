@@ -18,6 +18,11 @@ ipfs version
 
 if [ -e "$repo/config" ]; then
   echo "Found IPFS fs-repo at $repo"
+
+  # migrate if needed
+  echo "Checking for migration..."
+  export IPFS_FS_MIGRATION_11_TO_12_NWORKERS=100
+  ipfs repo migrate
 else
   ipfs init ${IPFS_PROFILE:+"--profile=$IPFS_PROFILE"}
   ipfs config Addresses.API /ip4/0.0.0.0/tcp/5001
