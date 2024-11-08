@@ -58,6 +58,11 @@ COPY --from=utilities /etc/ssl/certs /etc/ssl/certs
 COPY --from=builder $SRC_DIR/cmd/ipfs/ipfs /usr/local/bin/ipfs
 COPY --from=builder $SRC_DIR/bin/container_daemon /usr/local/bin/start_ipfs
 COPY --from=builder $SRC_DIR/bin/container_init_run /usr/local/bin/container_init_run
+COPY --from=builder $SRC_DIR/bin/fs-repo-11-to-12 /usr/local/bin/fs-repo-11-to-12
+COPY --from=builder $SRC_DIR/bin/fs-repo-12-to-13 /usr/local/bin/fs-repo-12-to-13
+COPY --from=builder $SRC_DIR/bin/fs-repo-13-to-14 /usr/local/bin/fs-repo-13-to-14
+COPY --from=builder $SRC_DIR/bin/fs-repo-14-to-15 /usr/local/bin/fs-repo-14-to-15
+COPY --from=builder $SRC_DIR/bin/fs-repo-15-to-16 /usr/local/bin/fs-repo-15-to-16
 
 # Add suid bit on fusermount so it will run properly
 RUN chmod 4755 /usr/local/bin/fusermount
