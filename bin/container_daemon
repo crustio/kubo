@@ -21,7 +21,7 @@ if [ -e "$repo/config" ]; then
 
   # migrate if needed
   echo "Checking for migration..."
-  export IPFS_FS_MIGRATION_11_TO_12_NWORKERS=40
+  export IPFS_FS_MIGRATION_11_TO_12_NWORKERS=5
   ipfs repo migrate
 else
   ipfs init ${IPFS_PROFILE:+"--profile=$IPFS_PROFILE"}
