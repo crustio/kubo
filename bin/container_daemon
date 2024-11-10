@@ -21,8 +21,9 @@ if [ -e "$repo/config" ]; then
 
   # migrate if needed
   echo "Checking for migration..."
-  export IPFS_FS_MIGRATION_11_TO_12_NWORKERS=1
+  export IPFS_FS_MIGRATION_11_TO_12_NWORKERS=10
   ipfs repo migrate
+  ipfs config --json Routing.AcceleratedDHTClient true
 else
   ipfs init ${IPFS_PROFILE:+"--profile=$IPFS_PROFILE"}
   ipfs config Addresses.API /ip4/0.0.0.0/tcp/5001
